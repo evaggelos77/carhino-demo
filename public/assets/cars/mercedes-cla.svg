@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1"><stop stop-color="#111"/><stop offset="1" stop-color="#2a2a2a"/></linearGradient>
+    <linearGradient id="car" x1="0" x2="1"><stop stop-color="#f6f6f6"/><stop offset="1" stop-color="#c9c9c9"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <ellipse cx="800" cy="690" rx="460" ry="70" fill="#000" opacity=".25"/>
+  <path d="M420 560c45-116 128-172 310-182 193-10 318 21 436 157l66 14c38 8 58 27 58 57v45H1185c-12-57-44-86-96-86-52 0-84 29-96 86H638c-12-57-44-86-96-86-52 0-84 29-96 86H318v-32c0-34 21-54 67-59l35-4z" fill="url(#car)"/>
+  <circle cx="540" cy="650" r="72" fill="#1a1a1a"/><circle cx="540" cy="650" r="38" fill="#999"/>
+  <circle cx="1080" cy="650" r="72" fill="#1a1a1a"/><circle cx="1080" cy="650" r="38" fill="#999"/>
+  <path d="M611 403h228c110 0 206 35 295 120H516c25-68 52-103 95-120z" fill="#efefef" opacity=".92"/>
+  <path d="M508 538h659" stroke="#d20a0a" stroke-width="8" opacity=".75"/>
+  <text x="100" y="120" fill="#fff" font-family="Inter,Arial" font-size="44" font-weight="700">Carhino Demo Vehicle</text>
+</svg>

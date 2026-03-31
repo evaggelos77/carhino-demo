@@ -1,0 +1,67 @@
+<%- include('partials/header') %>
+<section class="page-hero page-hero-centered">
+  <div class="container">
+    <h1><%= vehicle.name %></h1>
+    <p><%= t('Γιώργο, εδώ σου δείχνω πώς μπορεί να φαίνεται σωστά η σελίδα κάθε οχήματος, με premium εικόνα και ξεκάθαρη εμπορική πληροφορία.', 'George, here I show you how each vehicle page can look properly, with a premium image and clear commercial information.') %></p>
+  </div>
+</section>
+<section class="section soft">
+  <div class="container vehicle-layout">
+    <div class="gallery">
+      <div class="gallery-main"><img src="<%= vehicle.images[0] %>" alt="<%= vehicle.name %>"></div>
+      <div class="gallery-thumbs">
+        <% vehicle.images.forEach(function(image){ %>
+          <img src="<%= image %>" alt="<%= vehicle.name %>">
+        <% }) %>
+      </div>
+      <div class="card card-pad centered-card">
+        <h3><%= t('Τι περιλαμβάνει το πακέτο', 'What the package includes') %></h3>
+        <ul class="list-clean">
+          <% vehicle.includedServices.forEach(function(item){ %>
+            <li><%= item %></li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+    <aside class="side-panel centered-card">
+      <div class="hero-mini-top">
+        <div>
+          <div class="eyebrow" style="margin-bottom:10px"><%= vehicle.heroBadge %></div>
+          <h2 style="margin:0;font-size:2rem;line-height:1.05"><%= vehicle.name %></h2>
+        </div>
+      </div>
+      <div class="price-row centered-row">
+        <div class="price"><%= money(vehicle.monthlyPrice) %> <span><%= t('/ μήνα', '/ month') %></span></div>
+      </div>
+      <p class="center-text-muted"><strong><%= t('Προκαταβολή', 'Deposit') %>:</strong> <%= money(vehicle.deposit) %> <%= vehicle.vatNotice %></p>
+      <p class="center-text-muted"><strong><%= t('Παράδοση', 'Delivery') %>:</strong> <%= vehicle.deliveryText %></p>
+      <div class="kpi centered-grid">
+        <div><%= vehicle.bodyType %></div>
+        <div><%= vehicle.transmission %></div>
+        <div><%= vehicle.fuel %></div>
+        <div><%= vehicle.year %></div>
+        <div><%= vehicle.mileage %></div>
+        <div><%= vehicle.color %></div>
+      </div>
+      <div class="inline-list compact centered-list">
+        <div><strong><%= t('Κινητήρας', 'Engine') %>:</strong> <%= vehicle.engineCapacity %></div>
+        <div><strong><%= t('Κίνηση', 'Drive') %>:</strong> <%= vehicle.drivetrain %></div>
+        <div><strong><%= t('Αποσκευές', 'Boot') %>:</strong> <%= vehicle.luggage %> L</div>
+      </div>
+      <h3><%= t('Κύρια σημεία', 'Key highlights') %></h3>
+      <ul class="list-clean">
+        <% vehicle.highlights.forEach(function(item){ %><li><%= item %></li><% }) %>
+      </ul>
+      <div class="finance-strip">
+        <div><span><%= t('Μίσθωμα', 'Lease') %></span><strong><%= money(vehicle.monthlyPrice) %> <%= t('/ μήνα', '/ month') %></strong></div>
+        <div><span><%= t('Προκαταβολή', 'Deposit') %></span><strong><%= money(vehicle.deposit) %> <%= vehicle.vatNotice %></strong></div>
+        <div><span><%= t('Παραλαβή αιτήσεων', 'Lead delivery') %></span><strong><%= t('στο email του Γιώργου', 'to George’s email') %></strong></div>
+      </div>
+      <div class="center-actions">
+        <a class="btn btn-red" href="<%= withLang('/apply/' + vehicle.slug) %>"><%= t('Ξεκίνα αίτηση', 'Start application') %></a>
+        <a class="btn btn-dark" href="<%= withLang('/offers') %>"><%= t('Πίσω στις προσφορές', 'Back to offers') %></a>
+      </div>
+    </aside>
+  </div>
+</section>
+<%- include('partials/footer') %>

@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+<section class="section soft">
+  <div class="container">
+    <div class="thank-card centered-card">
+      <span class="eyebrow">Error</span>
+      <h1><%= heading %></h1>
+      <p><%= message %></p>
+      <a class="btn btn-red" href="<%= withLang('/') %>"><%= t('Επιστροφή στην αρχική', 'Back to home') %></a>
+    </div>
+  </div>
+</section>
+<%- include('partials/footer') %>

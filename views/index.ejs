@@ -1,0 +1,192 @@
+<%- include('partials/header') %>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow"><%= t('Premium client demo', 'Premium client demo') %></span>
+      <h1><%= t('Online leasing εμπειρία που δείχνει άμεσα πώς μπορεί να λειτουργήσει η Carhino.', 'An online leasing experience that shows immediately how Carhino can work.') %></h1>
+      <p><%= t('Γιώργο, εδώ σου δείχνω πώς μπορεί ο δικός σου πελάτης να βλέπει 2 προσεγμένα οχήματα, να ανοίγει αίτηση από κινητό και να σου στέλνει όλα τα στοιχεία μαζί με τα έγγραφα.', 'George, here I show you how your customer can view 2 carefully presented vehicles, open an application from mobile and send you all details together with the documents.') %></p>
+      <div class="hero-actions">
+        <a class="btn btn-red" href="<%= withLang('/offers') %>"><%= t('Δες τα 2 demo οχήματα', 'See the 2 demo vehicles') %></a>
+        <a class="btn btn-outline" href="#how-it-works"><%= t('Πώς λειτουργεί', 'How it works') %></a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong><%= stats.vehicles %></strong><%= t(' premium demo οχήματα', ' premium demo vehicles') %></div>
+        <div class="stat"><strong><%= stats.availableVehicles %></strong><%= t(' έτοιμες σελίδες παρουσίασης', ' presentation-ready pages') %></div>
+        <div class="stat"><strong><%= stats.onlineFlow %></strong><%= t(' ροή αίτησης', ' application flow') %></div>
+        <div class="stat"><strong><%= stats.docs %></strong></div>
+      </div>
+    </div>
+    <div class="hero-card-wrap">
+      <div class="hero-card center-card">
+        <h3><%= t('Γιώργο, εδώ σου δείχνω τι κερδίζεις', 'George, here is what you gain') %></h3>
+        <ul class="hero-list">
+          <% (settings.heroBullets || []).forEach(function(item){ %>
+            <li><span><%= item[0] %></span><strong><%= item[1] %></strong></li>
+          <% }) %>
+        </ul>
+      </div>
+      <div class="contact-card center-card">
+        <h3><%= t('Στοιχεία παρουσίασης', 'Presentation details') %></h3>
+        <p><%= settings.address %></p>
+        <p><strong><%= t('Τηλέφωνο', 'Phone') %>:</strong> <%= settings.phone %></p>
+        <p><strong>Email:</strong> <%= settings.email %></p>
+        <p><strong><%= t('Ωράριο', 'Hours') %>:</strong> <%= settings.hours %></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section soft">
+  <div class="container">
+    <div class="section-head center-head">
+      <div>
+        <span class="eyebrow"><%= t('Δυνατά demo παραδείγματα', 'Strong demo examples') %></span>
+        <h2><%= t('Σελίδες οχημάτων και αίτηση που φαίνονται σωστά από την πρώτη ματιά', 'Vehicle pages and application flow that look right from the first glance') %></h2>
+      </div>
+      <p><%= t('Γιώργο, εδώ σου δείχνω ένα καθαρό demo χωρίς περιττά panel ή τεχνικά σημεία, για να μου πεις μόνο τις αλλαγές που θέλεις.', 'George, here I show you a clean demo without extra panels or technical sections, so you can tell me only the changes you want.') %></p>
+    </div>
+    <div class="grid-2">
+      <% vehicles.forEach(function(vehicle){ %>
+        <article class="card centered-card">
+          <div class="vehicle-cover">
+            <img src="<%= vehicle.images[0] %>" alt="<%= vehicle.name %>">
+            <div class="vehicle-cover-content centered-overlay">
+              <small><%= vehicle.heroBadge %></small>
+              <h3 class="vehicle-title"><%= vehicle.name %></h3>
+            </div>
+          </div>
+          <div class="card-pad">
+            <div class="price-row centered-row">
+              <div class="price"><%= money(vehicle.monthlyPrice) %> <span><%= t('/ μήνα', '/ month') %></span></div>
+              <div class="status-chip"><%= vehicle.status %></div>
+            </div>
+            <p class="center-text-muted"><%= vehicle.subtitle %></p>
+            <div class="meta centered-row">
+              <span><%= vehicle.bodyType %></span>
+              <span><%= vehicle.fuel %></span>
+              <span><%= vehicle.transmission %></span>
+            </div>
+            <div class="center-actions">
+              <a class="btn btn-dark" href="<%= withLang('/vehicle/' + vehicle.slug) %>"><%= t('Λεπτομέρειες', 'Details') %></a>
+              <a class="btn btn-red" href="<%= withLang('/apply/' + vehicle.slug) %>"><%= t('Ξεκίνα αίτηση', 'Start application') %></a>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works" class="section dark">
+  <div class="container">
+    <div class="section-head center-head">
+      <div>
+        <span class="eyebrow"><%= t('Γιατί δουλεύει', 'Why it works') %></span>
+        <h2><%= t('Το leasing γίνεται απλό, καθαρό και πολύ πιο χρήσιμο για την ομάδα πωλήσεων', 'Leasing becomes simple, clear and much more useful for the sales team') %></h2>
+      </div>
+      <p class="center-dark-copy"><%= t('Γιώργο, εδώ σου δείχνω ότι δεν μιλάμε για απλή βιτρίνα αλλά για εργαλείο που συλλέγει σωστά αιτήσεις και έγγραφα.', 'George, here I show that this is not just a showcase but a tool that properly collects applications and documents.') %></p>
+    </div>
+    <div class="steps">
+      <div class="step centered-card"><strong>1</strong><h3><%= t('Ο πελάτης βλέπει όχημα', 'Customer views a vehicle') %></h3><p><%= t('Γιώργο, εδώ ο πελάτης σου συγκρίνει γρήγορα τις βασικές επιλογές και ανοίγει το όχημα που τον ενδιαφέρει.', 'George, here your customer quickly compares the main options and opens the vehicle that interests them.') %></p></div>
+      <div class="step centered-card"><strong>2</strong><h3><%= t('Ανοίγει η αίτηση', 'The application opens') %></h3><p><%= t('Γιώργο, εδώ του δείχνω μια καθαρή ροή βήμα-βήμα χωρίς μπέρδεμα.', 'George, here I show a clean step-by-step flow without confusion.') %></p></div>
+      <div class="step centered-card"><strong>3</strong><h3><%= t('Στέλνει έγγραφα', 'Documents are uploaded') %></h3><p><%= t('Γιώργο, εδώ μπορεί να φωτογραφίσει ή να ανεβάσει τα βασικά δικαιολογητικά από κινητό.', 'George, here they can photograph or upload the key documents from mobile.') %></p></div>
+      <div class="step centered-card"><strong>4</strong><h3><%= t('Εσύ λαμβάνεις lead', 'You receive the lead') %></h3><p><%= t('Γιώργο, εδώ σου έρχεται πλήρες πακέτο με στοιχεία και συνημμένα, έτοιμο για αξιολόγηση.', 'George, here you receive a full package with details and attachments, ready for review.') %></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head center-head">
+      <div>
+        <span class="eyebrow">Business value</span>
+        <h2><%= t('Τι παίρνει η εταιρεία από την πρώτη μέρα', 'What the company gets from day one') %></h2>
+      </div>
+    </div>
+    <div class="why-grid">
+      <div class="why-item centered-card"><strong><%= t('Πιο οργανωμένα leads', 'More organised leads') %></strong><p><%= t('Γιώργο, εδώ μαζεύονται σωστά όλα τα στοιχεία και δεν χάνονται σε τηλέφωνα ή πρόχειρα μηνύματα.', 'George, here all details are gathered properly and do not get lost in calls or random messages.') %></p></div>
+      <div class="why-item centered-card"><strong><%= t('Mobile-first εμπειρία', 'Mobile-first experience') %></strong><p><%= t('Ο ενδιαφερόμενος κάνει την αίτηση από εκεί που βρίσκεται, χωρίς να περιμένει γραφείο ή υπολογιστή.', 'The prospect can complete the application wherever they are, without waiting for an office or desktop.') %></p></div>
+      <div class="why-item centered-card"><strong><%= t('Premium εικόνα brand', 'Premium brand image') %></strong><p><%= t('Η Carhino δείχνει πιο σύγχρονη, πιο οργανωμένη και πιο σοβαρή από την πρώτη επαφή.', 'Carhino looks more modern, more organised and more professional from the first contact.') %></p></div>
+      <div class="why-item centered-card"><strong><%= t('Έτοιμο για production', 'Ready for production') %></strong><p><%= t('Το demo πατάει σε λογική που επεκτείνεται εύκολα με πραγματικά email, admin και database.', 'The demo is based on a structure that can be extended easily with real email, admin and database.') %></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="container">
+    <div class="section-head center-head">
+      <div>
+        <span class="eyebrow">Lead delivery</span>
+        <h2><%= t('Γιώργο, εδώ σου δείχνω τι θα λαμβάνεις όταν ο υποψήφιος στείλει αίτηση', 'George, here I show what you will receive when a prospect submits an application') %></h2>
+      </div>
+      <p><%= t('Το κρίσιμο business σημείο είναι ότι δεν θα λαμβάνεις απλό μήνυμα ενδιαφέροντος, αλλά πλήρες πακέτο με όλα τα στοιχεία και τα έγγραφα.', 'The crucial business point is that you will not receive a simple enquiry message, but a full package with all details and documents.') %></p>
+    </div>
+    <div class="lead-grid">
+      <article class="lead-card lead-card-main centered-card">
+        <div class="lead-card-head">
+          <span class="eyebrow subtle-dark"><%= t('Παράδοση lead', 'Lead delivery') %></span>
+          <h3><%= t('Γιώργο, εδώ βλέπεις το πλήρες email package', 'George, here you can see the full email package') %></h3>
+        </div>
+        <div class="lead-lines">
+          <div><span><%= t('Στοιχεία πελάτη', 'Customer details') %></span><strong><%= t('όνομα, κινητό, email, ΑΦΜ', 'name, mobile, email, tax ID') %></strong></div>
+          <div><span><%= t('Στοιχεία αίτησης', 'Application details') %></span><strong><%= t('όχημα, προκαταβολή, σχόλια', 'vehicle, deposit, notes') %></strong></div>
+          <div><span><%= t('Συνημμένα', 'Attachments') %></span><strong><%= t('ταυτότητα, δίπλωμα, επιπλέον έγγραφα', 'identity, licence, extra documents') %></strong></div>
+          <div><span><%= t('Παρακολούθηση', 'Tracking') %></span><strong>local outbox + email preview</strong></div>
+        </div>
+      </article>
+      <article class="lead-card centered-card">
+        <h3><%= t('Γιατί είναι σημαντικό', 'Why this matters') %></h3>
+        <ul class="list-clean">
+          <li><%= t('Γιώργο, εδώ δεν χάνονται leads σε πρόχειρα τηλέφωνα ή chat.', 'George, here leads do not get lost in random calls or chat.') %></li>
+          <li><%= t('Βλέπεις αμέσως ποιος έστειλε τι.', 'You immediately see who sent what.') %></li>
+          <li><%= t('Η ομάδα απαντά πιο γρήγορα και πιο επαγγελματικά.', 'Your team responds faster and more professionally.') %></li>
+        </ul>
+      </article>
+      <article class="lead-card centered-card">
+        <h3><%= t('Τι βλέπεις στο demo', 'What you see in the demo') %></h3>
+        <ul class="list-clean">
+          <li><%= t('Καθαρή παρουσίαση 2 οχημάτων.', 'Clean presentation of 2 vehicles.') %></li>
+          <li><%= t('Βήμα-βήμα αίτηση χωρίς μπέρδεμα.', 'Step-by-step application without confusion.') %></li>
+          <li><%= t('Κάμερα / upload εγγράφων από κινητό.', 'Camera / document upload from mobile.') %></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-strip centered-card">
+      <div>
+        <span class="eyebrow"><%= t('Έτοιμο για παρουσίαση', 'Ready for presentation') %></span>
+        <h2><%= t('Γιώργο, εδώ σου δείχνω το concept καθαρά για να μου πεις μόνο τις αλλαγές που θέλεις.', 'George, here I show you the concept clearly so you can tell me only the changes you want.') %></h2>
+        <p><%= t('Το demo είναι αρκετά premium για παρουσίαση, αλλά και αρκετά απλό ώστε να δούμε μαζί διορθώσεις χωρίς να σε μπερδεύει.', 'The demo is premium enough for presentation, but simple enough so we can review changes together without confusing you.') %></p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-red" href="<%= withLang('/offers') %>"><%= t('Παρουσίαση οχημάτων', 'Vehicle presentation') %></a>
+        <a class="btn btn-outline" href="mailto:<%= settings.email %>"><%= t('Στείλε δείγμα με mail', 'Send sample by email') %></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section soft">
+  <div class="container">
+    <div class="section-head center-head">
+      <div>
+        <span class="eyebrow">FAQ</span>
+        <h2><%= t('Συχνές ερωτήσεις για την παρουσίαση', 'Common presentation questions') %></h2>
+      </div>
+    </div>
+    <div class="faqs">
+      <% faqs.forEach(function(faq){ %>
+        <div class="faq">
+          <button type="button"><span><%= faq.q %></span><span>+</span></button>
+          <div class="answer"><%= faq.a %></div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<%- include('partials/footer') %>

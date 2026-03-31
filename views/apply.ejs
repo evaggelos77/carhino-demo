@@ -1,0 +1,162 @@
+<%- include('partials/header') %>
+<section class="page-hero page-hero-centered">
+  <div class="container">
+    <h1><%= t('Αίτηση leasing για', 'Leasing application for') %> <%= vehicle.name %></h1>
+    <p><%= t('Γιώργο, εδώ σου δείχνω μια καθαρή εμπειρία αίτησης: λίγα βήματα, mobile λογική και σωστή αποστολή στοιχείων με έγγραφα.', 'George, here I show you a clean application experience: a few steps, mobile logic and proper sending of details with documents.') %></p>
+  </div>
+</section>
+<section class="section soft">
+  <div class="container app-shell">
+    <div class="form-card centered-card">
+      <% if (error) { %><div class="flash error"><%= error %></div><% } %>
+      <div class="progress centered-progress">
+        <div class="item active"><%= t('1. Στοιχεία', '1. Details') %></div>
+        <div class="item"><%= t('2. Έγγραφα', '2. Documents') %></div>
+        <div class="item"><%= t('3. Επιβεβαίωση', '3. Confirmation') %></div>
+      </div>
+      <form method="post" enctype="multipart/form-data" data-multistep-form>
+        <div class="form-step active">
+          <div class="form-grid centered-form-grid">
+            <div><label><%= t('Ονοματεπώνυμο', 'Full name') %></label><input name="fullName" value="<%= old.fullName || '' %>" required></div>
+            <div><label><%= t('Κινητό', 'Mobile') %></label><input name="phone" value="<%= old.phone || '' %>" required></div>
+            <div><label>Email</label><input type="email" name="email" value="<%= old.email || '' %>" required></div>
+            <div><label>ΑΦΜ</label><input name="afm" value="<%= old.afm || '' %>"></div>
+            <div class="full"><label><%= t('Διεύθυνση', 'Address') %></label><input name="address" value="<%= old.address || '' %>"></div>
+            <div><label><%= t('Επάγγελμα', 'Occupation') %></label><input name="occupation" value="<%= old.occupation || '' %>"></div>
+            <div><label><%= t('Μηνιαίο εισόδημα', 'Monthly income') %></label><input name="monthlyIncome" value="<%= old.monthlyIncome || '' %>"></div>
+            <div class="full"><label><%= t('Σχόλια / παρατηρήσεις', 'Notes / comments') %></label><textarea name="notes"><%= old.notes || '' %></textarea></div>
+          </div>
+          <div class="center-actions right-on-desktop">
+            <button class="btn btn-red" type="button" data-next-step><%= t('Συνέχεια στα έγγραφα', 'Continue to documents') %></button>
+          </div>
+        </div>
+
+        <div class="form-step">
+          <div class="doc-checklist centered-doc-grid">
+            <div><strong><%= t('Βασικά απαιτούμενα', 'Required') %></strong><span><%= t('Ταυτότητα μπροστά', 'Identity front') %></span><span><%= t('Ταυτότητα πίσω', 'Identity back') %></span><span><%= t('Δίπλωμα οδήγησης', 'Driving licence') %></span></div>
+            <div><strong><%= t('Προαιρετικά', 'Optional') %></strong><span><%= t('Αποδεικτικό κατοικίας', 'Proof of address') %></span><span><%= t('Έγγραφο εισοδήματος', 'Income document') %></span><span><%= t('Extra έγγραφο', 'Extra document') %></span></div>
+          </div>
+          <p class="center-text-muted top-gap"><%= t('Γιώργο, εδώ ο πελάτης σου μπορεί να ανοίγει και την κάμερα για να φωτογραφίζει τα έγγραφα απευθείας μέσα στο flow.', 'George, here your customer can even open the camera to photograph documents directly inside the flow.') %></p>
+          <div class="camera-boxes">
+            <div class="upload-box centered-card">
+              <strong><%= t('Ταυτότητα μπροστά', 'Identity front') %> *</strong>
+              <input type="file" name="identityFront" accept="image/*,.pdf" capture="environment" data-preview-target="prev-front" required>
+              <input type="hidden" name="camera_identityFront" data-camera-hidden="identityFront">
+              <button class="btn btn-dark camera-trigger" type="button" data-open-camera="identityFront"><%= t('Άνοιγμα κάμερας', 'Open camera') %></button>
+              <div class="preview" id="prev-front"><%= t('Δεν επιλέχθηκε αρχείο ακόμα', 'No file selected yet') %></div>
+            </div>
+            <div class="upload-box centered-card">
+              <strong><%= t('Ταυτότητα πίσω', 'Identity back') %> *</strong>
+              <input type="file" name="identityBack" accept="image/*,.pdf" capture="environment" data-preview-target="prev-back" required>
+              <input type="hidden" name="camera_identityBack" data-camera-hidden="identityBack">
+              <button class="btn btn-dark camera-trigger" type="button" data-open-camera="identityBack"><%= t('Άνοιγμα κάμερας', 'Open camera') %></button>
+              <div class="preview" id="prev-back"><%= t('Δεν επιλέχθηκε αρχείο ακόμα', 'No file selected yet') %></div>
+            </div>
+            <div class="upload-box centered-card">
+              <strong><%= t('Δίπλωμα οδήγησης', 'Driving licence') %> *</strong>
+              <input type="file" name="drivingLicense" accept="image/*,.pdf" capture="environment" data-preview-target="prev-license" required>
+              <input type="hidden" name="camera_drivingLicense" data-camera-hidden="drivingLicense">
+              <button class="btn btn-dark camera-trigger" type="button" data-open-camera="drivingLicense"><%= t('Άνοιγμα κάμερας', 'Open camera') %></button>
+              <div class="preview" id="prev-license"><%= t('Δεν επιλέχθηκε αρχείο ακόμα', 'No file selected yet') %></div>
+            </div>
+            <div class="upload-box centered-card">
+              <strong><%= t('Αποδεικτικό κατοικίας', 'Proof of address') %></strong>
+              <input type="file" name="proofOfAddress" accept="image/*,.pdf" capture="environment" data-preview-target="prev-address">
+              <input type="hidden" name="camera_proofOfAddress" data-camera-hidden="proofOfAddress">
+              <button class="btn btn-dark camera-trigger" type="button" data-open-camera="proofOfAddress"><%= t('Άνοιγμα κάμερας', 'Open camera') %></button>
+              <div class="preview" id="prev-address"><%= t('Προαιρετικό αρχείο', 'Optional file') %></div>
+            </div>
+            <div class="upload-box centered-card">
+              <strong><%= t('Έγγραφο εισοδήματος', 'Income document') %></strong>
+              <input type="file" name="incomeDocument" accept="image/*,.pdf" capture="environment" data-preview-target="prev-income">
+              <input type="hidden" name="camera_incomeDocument" data-camera-hidden="incomeDocument">
+              <button class="btn btn-dark camera-trigger" type="button" data-open-camera="incomeDocument"><%= t('Άνοιγμα κάμερας', 'Open camera') %></button>
+              <div class="preview" id="prev-income"><%= t('Προαιρετικό αρχείο', 'Optional file') %></div>
+            </div>
+            <div class="upload-box centered-card">
+              <strong><%= t('Extra έγγραφο', 'Extra document') %></strong>
+              <input type="file" name="extraDocument" accept="image/*,.pdf" capture="environment" data-preview-target="prev-extra">
+              <input type="hidden" name="camera_extraDocument" data-camera-hidden="extraDocument">
+              <button class="btn btn-dark camera-trigger" type="button" data-open-camera="extraDocument"><%= t('Άνοιγμα κάμερας', 'Open camera') %></button>
+              <div class="preview" id="prev-extra"><%= t('Προαιρετικό αρχείο', 'Optional file') %></div>
+            </div>
+          </div>
+          <div class="center-actions between-actions">
+            <button class="btn btn-dark" type="button" data-prev-step><%= t('Πίσω', 'Back') %></button>
+            <button class="btn btn-red" type="button" data-next-step><%= t('Συνέχεια στην επιβεβαίωση', 'Continue to confirmation') %></button>
+          </div>
+        </div>
+
+        <div class="form-step">
+          <h3 class="center-title"><%= t('Έτοιμο για αποστολή', 'Ready to send') %></h3>
+          <p class="center-text-muted"><%= t('Γιώργο, εδώ σου δείχνω ότι η αίτηση δημιουργεί πλήρες lead package και μπορεί να σταλεί στο email σου μαζί με τα συνημμένα.', 'George, here I show that the application creates a full lead package and can be sent to your email together with the attachments.') %></p>
+          <div class="inline-list centered-list">
+            <div><%= t('Το όχημα που επιλέχθηκε', 'Selected vehicle') %>: <strong><%= vehicle.name %></strong></div>
+            <div><%= t('Η αίτηση αποθηκεύεται και στο local outbox για έλεγχο.', 'The application is also stored in the local outbox for review.') %></div>
+            <div><%= t('Το flow είναι demo/public-facing και δεν εμφανίζει admin κομμάτι στον πελάτη.', 'The flow is demo/public-facing and does not show any admin area to the client.') %></div>
+            <div data-live-docs-summary><%= t('Συμπλήρωση εγγράφων', 'Document completion') %>: <strong><%= t('0 / 3 βασικά έγγραφα', '0 / 3 basic documents') %></strong></div>
+          </div>
+          <div class="center-actions between-actions wrap-top">
+            <button class="btn btn-dark" type="button" data-prev-step><%= t('Πίσω', 'Back') %></button>
+            <button class="btn btn-red" type="submit"><%= t('Υποβολή αίτησης', 'Submit application') %></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <aside class="side-summary centered-card">
+      <img src="<%= vehicle.images[0] %>" alt="<%= vehicle.name %>" style="border-radius:22px;margin-bottom:16px">
+      <div class="eyebrow summary-badge"><%= vehicle.heroBadge %></div>
+      <h2 class="summary-title"><%= vehicle.name %></h2>
+      <div class="price summary-price"><%= money(vehicle.monthlyPrice) %> <span><%= t('/ μήνα', '/ month') %></span></div>
+      <p class="summary-copy"><strong><%= t('Προκαταβολή', 'Deposit') %>:</strong> <%= money(vehicle.deposit) %> <%= vehicle.vatNotice %></p>
+      <p class="summary-copy"><strong><%= t('Παράδοση', 'Delivery') %>:</strong> <%= vehicle.deliveryText %></p>
+      <ul class="list-clean summary-list">
+        <% vehicle.highlights.forEach(function(item){ %><li><%= item %></li><% }) %>
+      </ul>
+      <div class="giorgos-card centered-card">
+        <h3><%= t('Γιώργο, εδώ θα λαμβάνεις το lead package', 'George, here is the lead package you will receive') %></h3>
+        <p><%= t('Με την ολοκλήρωση της αίτησης, δημιουργείται οργανωμένο πακέτο με όλα τα στοιχεία του ενδιαφερόμενου και τα συνημμένα έγγραφα.', 'Once the application is completed, an organised package is created with all prospect details and attached documents.') %></p>
+      </div>
+      <div class="live-summary-card centered-card">
+        <h3><%= t('Live preview αίτησης', 'Live application preview') %></h3>
+        <div class="live-summary-lines">
+          <div><span><%= t('Υποψήφιος', 'Applicant') %></span><strong data-live-name>—</strong></div>
+          <div><span><%= t('Κινητό', 'Mobile') %></span><strong data-live-phone>—</strong></div>
+          <div><span>Email</span><strong data-live-email>—</strong></div>
+          <div><span><%= t('Βασικά έγγραφα', 'Basic documents') %></span><strong data-live-docs>0 / 3</strong></div>
+        </div>
+        <p><%= t('Γιώργο, εδώ βλέπεις ζωντανά πώς οργανώνεται η αίτηση την ώρα που τη συμπληρώνει ο πελάτης.', 'George, here you can see live how the application is organised while the customer fills it in.') %></p>
+      </div>
+    </aside>
+  </div>
+</section>
+<div class="camera-modal" data-camera-modal hidden>
+  <div class="camera-modal-backdrop" data-close-camera></div>
+  <div class="camera-modal-card centered-card">
+    <div class="camera-modal-head">
+      <strong><%= t('Λήψη εγγράφου με κάμερα', 'Capture document with camera') %></strong>
+      <button type="button" class="camera-close" data-close-camera>✕</button>
+    </div>
+    <p class="camera-help"><%= t('Αν η κάμερα ζητήσει άδεια, πάτησε Allow / Να επιτρέπεται. Μετά πάτησε «Τράβηξε φωτογραφία».', 'If the camera asks for permission, click Allow. Then click “Capture photo”.') %></p>
+    <div class="camera-stage">
+      <video autoplay playsinline muted data-camera-video></video>
+      <canvas data-camera-canvas hidden></canvas>
+      <div class="camera-frame" aria-hidden="true">
+        <div class="camera-frame-box">
+          <span class="corner tl"></span>
+          <span class="corner tr"></span>
+          <span class="corner bl"></span>
+          <span class="corner br"></span>
+          <span class="camera-frame-label"><%= t('Τοποθέτησε το έγγραφο μέσα στο πλαίσιο', 'Place the document inside the frame') %></span>
+        </div>
+      </div>
+    </div>
+    <div class="camera-meter" data-camera-focus><%= t('Έλεγχος καθαρότητας...', 'Checking sharpness...') %></div>
+    <div class="camera-status" data-camera-status><%= t('Πάτησε άνοιγμα κάμερας για να ξεκινήσει η προεπισκόπηση.', 'Press open camera to start the preview.') %></div>
+    <div class="camera-actions">
+      <button class="btn btn-dark" type="button" data-close-camera><%= t('Άκυρο', 'Cancel') %></button>
+      <button class="btn btn-red" type="button" data-capture-camera><%= t('Τράβηξε φωτογραφία', 'Capture photo') %></button>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

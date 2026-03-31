@@ -1,0 +1,68 @@
+<%- include('partials/header') %>
+<section class="page-hero page-hero-centered">
+  <div class="container">
+    <h1><%= t('Premium demo προσφορές', 'Premium demo offers') %></h1>
+    <p><%= t('Γιώργο, εδώ σου δείχνω μόνο 2 σωστά παραδείγματα, ώστε να δεις καθαρά πώς παρουσιάζονται τα οχήματα και πώς ανοίγει η αίτηση.', 'George, here I show you only 2 proper examples so you can clearly see how vehicles are presented and how the application opens.') %></p>
+  </div>
+</section>
+<section class="section soft">
+  <div class="container">
+    <form class="filters filters-centered" method="get" action="/offers">
+      <% if (lang === 'en') { %><input type="hidden" name="lang" value="en"><% } %>
+      <input type="text" name="q" placeholder="<%= t('Αναζήτηση demo οχήματος', 'Search demo vehicle') %>" value="<%= q || '' %>">
+      <button class="btn btn-red" type="submit"><%= t('Αναζήτηση', 'Search') %></button>
+    </form>
+    <div class="grid-2 offers-grid-top">
+      <% vehicles.forEach(function(vehicle){ %>
+        <article class="card centered-card">
+          <div class="vehicle-cover">
+            <img src="<%= vehicle.images[0] %>" alt="<%= vehicle.name %>">
+            <div class="vehicle-cover-content centered-overlay">
+              <small><%= vehicle.heroBadge %></small>
+              <h3 class="vehicle-title"><%= vehicle.name %></h3>
+            </div>
+          </div>
+          <div class="card-pad">
+            <div class="price-row centered-row">
+              <div class="price"><%= money(vehicle.monthlyPrice) %> <span><%= t('/ μήνα', '/ month') %></span></div>
+              <div class="status-chip"><%= vehicle.status %></div>
+            </div>
+            <div class="meta centered-row">
+              <span><%= vehicle.bodyType %></span>
+              <span><%= vehicle.fuel %></span>
+              <span><%= vehicle.transmission %></span>
+              <span><%= vehicle.year %></span>
+            </div>
+            <p class="center-text-muted"><%= vehicle.subtitle %></p>
+            <div class="center-actions">
+              <a class="btn btn-dark" href="<%= withLang('/vehicle/' + vehicle.slug) %>"><%= t('Λεπτομέρειες', 'Details') %></a>
+              <a class="btn btn-red" href="<%= withLang('/apply/' + vehicle.slug) %>"><%= t('Αίτηση', 'Apply') %></a>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+
+    <div class="compare-box centered-card">
+      <div class="section-head compact-head center-head">
+        <div>
+          <span class="eyebrow"><%= t('Γρήγορη σύγκριση', 'Quick comparison') %></span>
+          <h2><%= t('Γιώργο, εδώ σου δείχνω 2 demo προτάσεις με διαφορετικό leasing profile', 'George, here I show you 2 demo proposals with different leasing profiles') %></h2>
+        </div>
+        <p><%= t('Έτσι βλέπεις γρήγορα το concept χωρίς να χαθείς σε μεγάλο στόλο από την πρώτη παρουσίαση.', 'This lets you understand the concept quickly without getting lost in a large fleet during the first presentation.') %></p>
+      </div>
+      <div class="compare-grid">
+        <% vehicles.forEach(function(vehicle){ %>
+          <div class="compare-col centered-card">
+            <h3><%= vehicle.name %></h3>
+            <div class="compare-row"><span><%= t('Μηνιαίο μίσθωμα', 'Monthly lease') %></span><strong><%= money(vehicle.monthlyPrice) %></strong></div>
+            <div class="compare-row"><span><%= t('Προκαταβολή', 'Deposit') %></span><strong><%= money(vehicle.deposit) %></strong></div>
+            <div class="compare-row"><span><%= t('Κατηγορία', 'Category') %></span><strong><%= vehicle.bodyType %></strong></div>
+            <div class="compare-row"><span><%= t('Κατάλληλο για', 'Best for') %></span><strong><%= vehicle.heroBadge %></strong></div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('partials/footer') %>

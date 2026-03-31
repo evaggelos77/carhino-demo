@@ -1,0 +1,78 @@
+[
+  {
+    "slug": "bmw-x1-black-edition",
+    "name": "BMW X1 Black Edition",
+    "heroBadge": "Premium SUV demo",
+    "status": "Άμεσα διαθέσιμο demo",
+    "monthlyPrice": 499,
+    "deposit": 4200,
+    "vatNotice": "+ ΦΠΑ",
+    "deliveryText": "Παράδειγμα άμεσης διαθεσιμότητας για παρουσίαση πελάτη",
+    "year": 2024,
+    "fuel": "Βενζίνη",
+    "transmission": "Αυτόματο",
+    "bodyType": "SUV",
+    "doors": 5,
+    "passengers": 5,
+    "luggage": 540,
+    "engineCapacity": "1.5 Turbo",
+    "drivetrain": "FWD",
+    "mileage": "20.000 km / έτος",
+    "color": "Black Metallic",
+    "subtitle": "Δυνατό premium SUV με σοβαρή εταιρική εικόνα, πρακτικότητα και ξεκάθαρο leasing positioning.",
+    "highlights": [
+      "Premium showroom εικόνα για άμεση παρουσίαση στον πελάτη",
+      "Σωστή ισορροπία επαγγελματικού χαρακτήρα και καθημερινής χρήσης",
+      "Ιδανικό παράδειγμα για executive ή οικογενειακό leasing"
+    ],
+    "includedServices": [
+      "Service & συντήρηση",
+      "Οδική βοήθεια",
+      "Τέλη κυκλοφορίας",
+      "Υποστήριξη συμβολαίου leasing"
+    ],
+    "images": [
+      "/assets/cars/bmw-x1-showroom.png",
+      "/assets/cars/bmw-x1-showroom.png",
+      "/assets/cars/bmw-x1-showroom.png"
+    ]
+  },
+  {
+    "slug": "jaguar-e-pace-blue-r-dynamic",
+    "name": "Jaguar E-Pace Blue R-Dynamic",
+    "heroBadge": "Luxury crossover demo",
+    "status": "Περιορισμένη demo διαθεσιμότητα",
+    "monthlyPrice": 569,
+    "deposit": 4700,
+    "vatNotice": "+ ΦΠΑ",
+    "deliveryText": "Παράδειγμα premium πρότασης κατόπιν αξιολόγησης αίτησης",
+    "year": 2024,
+    "fuel": "Βενζίνη",
+    "transmission": "Αυτόματο",
+    "bodyType": "Crossover",
+    "doors": 5,
+    "passengers": 5,
+    "luggage": 494,
+    "engineCapacity": "2.0 Turbo",
+    "drivetrain": "AWD",
+    "mileage": "20.000 km / έτος",
+    "color": "Blue Metallic",
+    "subtitle": "Πιο upscale επιλογή για πελάτες που θέλουν έντονη εικόνα brand και premium αίσθηση σε κάθε επαφή.",
+    "highlights": [
+      "Πολύ δυνατή πρώτη εντύπωση για το demo της Carhino",
+      "Premium αισθητική με πιο luxury κατεύθυνση",
+      "Κατάλληλο παράδειγμα για higher-ticket leasing προτάσεις"
+    ],
+    "includedServices": [
+      "Service & συντήρηση",
+      "Οδική βοήθεια",
+      "Τέλη κυκλοφορίας",
+      "Υποστήριξη διαχείρισης συμβολαίου"
+    ],
+    "images": [
+      "/assets/cars/jaguar-epace-showroom.png",
+      "/assets/cars/jaguar-epace-showroom.png",
+      "/assets/cars/jaguar-epace-showroom.png"
+    ]
+  }
+]

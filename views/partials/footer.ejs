@@ -1,0 +1,17 @@
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <strong><%= settings.brandName || 'Carhino Leasing' %></strong><br>
+      <span style="color:#c9c9c9"><%= settings.tagline || 'Where Convenience Meets Class' %></span>
+    </div>
+    <div style="color:#d2d2d2"><%= settings.phone %> · <%= settings.email %></div>
+  </div>
+</footer>
+<div class="mobile-sticky-bar">
+  <a href="tel:<%= settings.phone %>"><%= t('Κάλεσε', 'Call') %></a>
+  <a href="<%= withLang('/offers') %>"><%= t('Δες οχήματα', 'View cars') %></a>
+  <a class="accent" href="mailto:<%= settings.email %>">Email</a>
+</div>
+<script src="/js/main.js"></script>
+</body>
+</html>

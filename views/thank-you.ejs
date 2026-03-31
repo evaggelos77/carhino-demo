@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+<section class="section soft">
+  <div class="container">
+    <div class="thank-card centered-card">
+      <span class="eyebrow"><%= t('Η αίτηση στάλθηκε', 'Application sent') %></span>
+      <h1><%= t('Το demo lead δημιουργήθηκε σωστά.', 'The demo lead was created successfully.') %></h1>
+      <p><%= t('Γιώργο, εδώ σου δείχνω ότι η αίτηση για το', 'George, here I show that the application for') %> <strong><%= vehicle ? vehicle.name : application.vehicleName %></strong> <%= t('καταχωρήθηκε με κωδικό', 'was registered with code') %> <strong><%= application.publicId %></strong>.</p>
+      <div class="inline-list centered-list">
+        <div><%= t('Όνομα', 'Name') %>: <strong><%= application.fullName %></strong></div>
+        <div><%= t('Τηλέφωνο', 'Phone') %>: <strong><%= application.phone %></strong></div>
+        <div>Email: <strong><%= application.email %></strong></div>
+        <div><%= t('Συνημμένα', 'Attachments') %>: <strong><%= application.attachments.length %></strong></div>
+        <div>Mail status: <strong><%= application.emailSent ? t('στάλθηκε', 'sent') : t('κρατήθηκε local στο outbox', 'kept locally in outbox') %></strong></div>
+      </div>
+      <div class="lead-package-box">
+        <h3><%= t('Γιώργο, εδώ βλέπεις τι περιλαμβάνει το πακέτο που θα λαμβάνεις', 'George, here you can see what is included in the package you will receive') %></h3>
+        <div class="compare-grid single-mobile">
+          <div class="compare-col centered-card">
+            <div class="compare-row"><span><%= t('Στοιχεία υποψηφίου', 'Applicant details') %></span><strong><%= application.fullName %></strong></div>
+            <div class="compare-row"><span><%= t('Τηλέφωνο', 'Phone') %></span><strong><%= application.phone %></strong></div>
+            <div class="compare-row"><span>Email</span><strong><%= application.email %></strong></div>
+            <div class="compare-row"><span><%= t('Συνημμένα', 'Attachments') %></span><strong><%= application.attachments.length %> <%= t('αρχεία', 'files') %></strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="lead-package-box">
+        <h3><%= t('Συνημμένα που μπήκαν στο lead package', 'Attachments included in the lead package') %></h3>
+        <div class="attachment-list">
+          <% application.attachments.forEach(function(file){ %>
+            <div><span><%= file.label || file.fieldName %></span><strong><%= file.originalName %></strong></div>
+          <% }) %>
+        </div>
+      </div>
+      <p class="center-text-muted"><%= t('Για έλεγχο demo, άνοιξε τον φάκελο', 'For demo review, open the folder') %> <strong>outbox/<%= application.publicId %></strong>. <%= t('Εκεί υπάρχουν το payload, το HTML preview του email και τα συνημμένα.', 'There you will find the payload, the HTML email preview and the attachments.') %></p>
+      <div class="center-actions wrap-top">
+        <a class="btn btn-red" href="<%= withLang('/offers') %>"><%= t('Πίσω στα οχήματα', 'Back to vehicles') %></a>
+        <a class="btn btn-dark" href="/secret/outbox/<%= application.publicId %><%= lang === 'en' ? '?lang=en' : '' %>" target="_blank"><%= t('Προεπισκόπηση email για τον Γιώργο', 'Preview the email for George') %></a>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('partials/footer') %>
